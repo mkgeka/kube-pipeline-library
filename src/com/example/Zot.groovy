@@ -1,6 +1,6 @@
 package com.example
 
-def checkOutFrom(repo) {
+def checkOutFrom() {
   git url: "https://github.com/mkgeka/test-maven-project.git"
 }
 
