@@ -1,6 +1,6 @@
 package com.example
-class Zot {
-  def checkOutFrom() {
-    git url: "https://github.com/mkgeka/test-maven-project.git"
-  }
+def checkOutFrom(repo) {
+  git url: "git@github.com:jenkinsci/${repo}"
 }
+
+return this
