@@ -10,6 +10,6 @@ class Pipeline {
     }
 
     def execute() {
-	// 
+	git url: "https://github.com/Brialius/test-maven-project.git"
     }
 }
