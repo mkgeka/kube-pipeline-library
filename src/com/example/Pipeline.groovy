@@ -14,7 +14,7 @@ class Pipeline {
 		def data = script.readFile(configurationFile)
 		script.stage("notifications")
 		    script.stage("build") {
-			    script.sh($configurationFile)
+			    script.sh(configurationFile)
 		    }
 		script.stage("database")
 		script.stage("deploy")
