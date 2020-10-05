@@ -10,7 +10,7 @@ class Pipeline {
     }
     def execute() {
 	    script.node("master") {
-		    script.git("clone") {
+		    script.git() {
 			    git clone 'https://github.com/Brialius/test-maven-project.git'
 		    }
 		script.stage("read")
