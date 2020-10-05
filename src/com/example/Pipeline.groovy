@@ -11,7 +11,7 @@ class Pipeline {
 
     def execute() {
 	    script.stage("source") {
-	    	script.node("test") 
+	    	script.node("performance") 
 	    }
 	    script.node("Build")
 	    script.node("Deploy")
