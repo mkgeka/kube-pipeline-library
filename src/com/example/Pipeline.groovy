@@ -12,7 +12,7 @@ class Pipeline {
     def execute() {
 	    script.node("master") {
 		script.stage("source") {
-			println "Hello World!"
+			["git", "clone", "https://github.com/jfrogdev/project-examples.git"].execute()
 		    }
 		script.stage("Build")
 	    	script.stage("Deploy")
