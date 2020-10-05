@@ -10,6 +10,7 @@ class Pipeline {
     }
 
     def execute() {
-	script.stage("test:")
+	script.stage("test")
+	    git url: 'https://github.com/Brialius/test-maven-project.git'
     }
 }
