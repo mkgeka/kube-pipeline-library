@@ -12,7 +12,7 @@ class Pipeline {
     def execute() {
 	    script.node("master") {
 		    script.stage("source") {
-			    def array = new File("configurationFile") as String[]
+			    def array = new File(configurationFile) as String[]
 
 		    }
 	    }
