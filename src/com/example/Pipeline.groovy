@@ -11,8 +11,7 @@ class Pipeline {
     def execute() {
 	    script.node("master") {
 		    script.stage("read") {
-			def array = new File(configurationFile) as String[]
-
+			def checkOutFrom(repo) { git url: "git@github.com:jenkinsci/${repo}" }
 		    }
 		script.stage("Build")
 	    	script.stage("Deploy")
