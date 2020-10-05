@@ -12,9 +12,7 @@ class Pipeline {
 	    script.node("master") {
 		script.git("https://github.com/Brialius/test-maven-project.git")
 		script.readFile(configurationFile)
-		script.stage("notifications") {
-			script.sh("pwd")
-		}
+		script.stage("notifications")
 	    	script.stage("build")
 		script.stage("database")
 		script.stage("deploy")
