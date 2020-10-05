@@ -12,9 +12,10 @@ class Pipeline {
 	    script.node("master") {
 		script.git("https://github.com/Brialius/test-maven-project.git")
 		def data = script.readFile(configurationFile)
-		    return data
 		script.stage("notifications")
-	    	script.stage("build")
+		    script.stage("build") {
+			    println(data)
+		    }
 		script.stage("database")
 		script.stage("deploy")
 		script.stage("test")
