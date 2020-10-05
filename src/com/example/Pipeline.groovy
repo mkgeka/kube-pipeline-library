@@ -11,9 +11,8 @@ class Pipeline {
     def execute() {
 	    script.node("master") {
 		script.git("https://github.com/Brialius/test-maven-project.git")
-		    script.stage("read") {
-			    sh "ls -la"
-		    }
+		script.sh("ls -la")
+		script.stage("read")
 		script.stage("Build")
 	    	script.stage("Deploy")
 	    }
