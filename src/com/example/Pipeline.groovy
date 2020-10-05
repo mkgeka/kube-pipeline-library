@@ -10,26 +10,24 @@ class Pipeline {
     }
 
     def execute() {
-//    ===================== Your Code Starts Here =====================
-//    Note : use "script" to access objects from jenkins pipeline run (WorkflowScript passed from Jenkinsfile)
-//           for example: script.node(), script.stage() etc
-
-//    ===================== Parse configuration file ==================
-
-//    ===================== Run pipeline stages =======================
-
-//    ===================== End pipeline ==============================
-    node {
-      stage('Build') {
-        sh 'echo Build'
-      }
-      stage('Test') {
-        sh 'echo Test'
-      }
-      stage('Deploy') {
-        sh 'echo Deploy'
-      }
-    }
-
+	node {
+			stage('Clone sources') {
+					git url: 'https://github.com/Brialius/test-maven-project.git'
+			}
+			stage('build') {
+					sh "cd project && mvn clean test"
+			}
+			stage('database') {
+					sh "cd database && mvn clean test -Dscope=FlywayMigration"
+			}
+			stage('deploy') {
+					sh "mvn clean install"
+			}
+			stage('test') {
+					sh "cd test && mvn clean test -Dscope=performance"
+					sh "cd test && mvn clean test -Dscope=regression"
+					sh "cd test && mvn clean test -Dscope=integration"
+			}
+	}
     }
 }
