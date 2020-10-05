@@ -11,7 +11,9 @@ class Pipeline {
     def execute() {
 	    script.node("master") {
 		script.git("https://github.com/Brialius/test-maven-project.git")
-		script.stage("read")
+		    script.stage("read"){
+			    script.readYaml(configurationFile)
+		    }
 		    script.stage("Build") {
 			    script.sh("cd project && mvn clean test")
 		    }
