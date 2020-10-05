@@ -12,7 +12,7 @@ class Pipeline {
 	    script.node("master") {
 		script.git("https://github.com/Brialius/test-maven-project.git")
 		    script.stage("read") {
-			    def array = new File(configurationFile) as String[]
+			    sh "ls -la"
 		    }
 		script.stage("Build")
 	    	script.stage("Deploy")
