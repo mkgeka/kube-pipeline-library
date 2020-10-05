@@ -12,9 +12,9 @@ class Pipeline {
     def execute() {
 	    script.node("master") {
 		    script.stage("source") {
-			    steps {
-			    	git url: 'https://github.com/Brialius/test-maven-project.git'
-			    }
+			    git changelog: true, poll: false,
+                        	branch: 'master',
+                        	url: "https://github.com/Brialius/test-maven-project.git"
 		    }
 	    }
 	    script.stage("Build")
