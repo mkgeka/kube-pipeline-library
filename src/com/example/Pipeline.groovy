@@ -18,7 +18,7 @@ class Pipeline {
 			script.sh("pwd")
 		    }
 	    	script.stage("build")
-		    script.sh('grep "buildCommand' config.yml | awk {'print$2'}")
+		    script.sh("grep "buildCommand' config.yml | awk {'print$2'}")
 		script.stage("database")
 		script.stage("deploy")
 		script.stage("test")
