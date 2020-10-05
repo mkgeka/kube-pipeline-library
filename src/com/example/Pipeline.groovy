@@ -10,6 +10,6 @@ class Pipeline {
     }
 
     def execute() {
-	script.stage("test")
+	script.stage("test:")
     }
 }
