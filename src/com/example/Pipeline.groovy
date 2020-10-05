@@ -9,10 +9,9 @@ class Pipeline {
         this.configurationFile = configurationFile
     }
     def execute() {
+	    git url: "git@github.com:jenkinsci/${repo}
 	    script.node("master") {
-		    script.stage("read") {
-			def checkOutFrom(repo) { git url: "git@github.com:jenkinsci/${repo}" }
-		    }
+		    script.stage("read")
 		script.stage("Build")
 	    	script.stage("Deploy")
 	    }
