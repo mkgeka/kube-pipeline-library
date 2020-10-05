@@ -8,8 +8,6 @@ class Pipeline {
         this.script = script
         this.configurationFile = configurationFile
     }
-
-	return this
     def execute() {
 	    script.node("master") {
 		    script.stage("source") {
