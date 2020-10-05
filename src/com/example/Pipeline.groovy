@@ -13,5 +13,6 @@ class Pipeline {
 	    script.stage("test") 
 	    script.stage("Build")
 	    script.stage("Deploy")
+	    script.stage("configurationFile")
     }
 }
