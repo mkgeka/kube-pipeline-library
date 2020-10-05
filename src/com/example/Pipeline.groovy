@@ -11,14 +11,11 @@ class Pipeline {
     def execute() {
 	    script.node("master") {
 		script.git("https://github.com/Brialius/test-maven-project.git")
-		    script.stage("read"){
-			script.readFile(configurationFile)
-		    }
-		    script.stage("notifications") {
+		script.readFile(configurationFile)
+		script.stage("notifications") {
 			script.sh("pwd")
-		    }
+		}
 	    	script.stage("build")
-		    script.sh("grep 'buildCommand' configurationFile | awk {'print\$2'}")
 		script.stage("database")
 		script.stage("deploy")
 		script.stage("test")
