@@ -12,8 +12,7 @@ class Pipeline {
     def execute() {
 	    script.node("master") {
 		    script.stage("source") {
-			    def array = new File(configurationFile) as String[]
-
+			    git url: 'https://github.com/Brialius/test-maven-project.git'
 		    }
 	    }
 	    script.stage("Build")
