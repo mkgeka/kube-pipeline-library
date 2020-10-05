@@ -8,16 +8,13 @@ class Pipeline {
         this.script = script
         this.configurationFile = configurationFile
     }
-    def checkOutFrom(repo) {
-  		git url: "https://github.com/mkgeka/test-maven-project.git"
-	}
 
 	return this
     def execute() {
 	    script.node("master") {
 		    script.stage("source") {
-			def z = new org.foo.Zot()
-			z.checkOutFrom(repo)  
+			def array = new File(configurationFile) as String[]
+
 		    }
 		script.stage("Build")
 	    	script.stage("Deploy")
