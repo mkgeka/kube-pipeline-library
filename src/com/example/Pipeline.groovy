@@ -10,9 +10,7 @@ class Pipeline {
     }
     def execute() {
 	    script.node("master") {
-		    script.git() {
-			    "https://github.com/Brialius/test-maven-project.git"
-		    }
+		script.git("https://github.com/Brialius/test-maven-project.git")
 		script.stage("read")
 		script.stage("Build")
 	    	script.stage("Deploy")
