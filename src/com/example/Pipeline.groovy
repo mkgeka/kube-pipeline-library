@@ -14,10 +14,13 @@ class Pipeline {
 		    script.stage("read"){
 			script.readFile(configurationFile)
 		    }
-		    script.stage("Build") {
+		    script.stage("notifications") {
 			script.sh("pwd")
 		    }
-	    	script.stage("Deploy")
+	    	script.stage("build")
+		script.stage("database")
+		script.stage("deploy")
+		script.stage("test")
 	    }
     }
 }
