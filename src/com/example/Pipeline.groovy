@@ -14,7 +14,7 @@ class Pipeline {
 		    script.stage("source") {
 			    git changelog: true, poll: false,
                         	branch: 'master',
-                        	url: "https://github.com/Brialius/test-maven-project.git"
+                        	url: "https://github.com/mkgeka/test-maven-project.git"
 		    }
 	    }
 	    script.stage("Build")
