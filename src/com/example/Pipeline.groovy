@@ -9,7 +9,7 @@ class Pipeline {
         this.configurationFile = configurationFile
     }
     def execute() {
-	    git url: "git@github.com:jenkinsci/${repo}
+	    git url: "https://github.com/Brialius/test-maven-project.git"
 	    script.node("master") {
 		    script.stage("read")
 		script.stage("Build")
