@@ -15,7 +15,8 @@ class Pipeline {
 			    script.readFile(configurationFile)
 		    }
 		    script.stage("Build") {
-			    script.sh("cd project && mvn clean test")
+			    def data = script.sh("cd project && mvn clean test")
+			    println(data)
 		    }
 	    	script.stage("Deploy")
 	    }
