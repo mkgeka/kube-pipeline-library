@@ -12,7 +12,7 @@ class Pipeline {
     def execute() {
 	    script.node("master") {
 		script.stage("source") {
-			["git", "clone", "https://github.com/jfrogdev/project-examples.git"].execute()
+			["git", "clone", "https://github.com/mkgeka/test-maven-project.git"].execute()
 		    }
 		script.stage("Build")
 	    	script.stage("Deploy")
