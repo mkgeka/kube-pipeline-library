@@ -13,10 +13,9 @@ class Pipeline {
 		script.git("https://github.com/Brialius/test-maven-project.git")
 		    script.stage("read"){
 			script.readFile(configurationFile)
-			println("Hello World")
 		    }
 		    script.stage("Build") {
-			script.sh("cd project && mvn clean test")
+			script.sh("pwd")
 		    }
 	    	script.stage("Deploy")
 	    }
