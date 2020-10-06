@@ -14,7 +14,7 @@ class Pipeline {
 		script.git("https://github.com/mkgeka/test-maven-project.git")
 		def valuesYaml = script.readYaml(file: configurationFile)
 		    script.stage("Initialize") { valuesYaml.getClass() }
-		    script.stage("notifications") { valuesYaml.notifications }
+		    script.stage("notifications") { valuesYaml.class.notifications }
 		    script.stage("build") { script.step(valuesYaml.build) }
 		    script.stage("database") { valuesYaml.database }
 		    script.stage("deploy") { valuesYaml.deploy }
