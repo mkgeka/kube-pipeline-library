@@ -8,13 +8,10 @@ class Pipeline {
         this.script = script
         this.configurationFile = configurationFile
     }
-    def loadValuesYaml(){
-  	def valuesYaml = script.readYaml(file: configurationFile)
-	    return valuesYaml;
-    }
     def execute() {
 	    script.node("master") {
 		script.git("https://github.com/mkgeka/test-maven-project.git")
+		script.stage("raed") { script.readYaml(file: configurationFile) }
 		script.stage("notifications")
 		script.stage("build")
 		script.stage("database")
