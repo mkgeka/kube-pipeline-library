@@ -15,9 +15,9 @@ class Pipeline {
 		def valuesYaml = script.readYaml(file: configurationFile)
 		    script.stage("notifications") {}
 		    script.stage("build") { script.step( valuesYaml.build ) }
-		    script.stage("database") {}
-		    script.stage("deploy") {}
-		    script.stage("test") {}
+		    script.stage("database") { script.step( valuesYaml.database ) }
+		    script.stage("deploy") { script.step( valuesYaml.deploy ) }
+		    script.stage("test") { script.step( valuesYaml.test ) }
 	    }
     }
 }
