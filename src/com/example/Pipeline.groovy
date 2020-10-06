@@ -1,5 +1,5 @@
 package com.example
-importjava.util.*;
+import java.util.*;
 
 class Pipeline {
     def script
