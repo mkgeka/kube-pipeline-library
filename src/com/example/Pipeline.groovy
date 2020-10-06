@@ -9,7 +9,7 @@ class Pipeline {
         this.configurationFile = configurationFile
     }
     def loadValuesYaml(){
-  	def valuesYaml = script.readYaml (file: configurationFile)
+  	def valuesYaml = script.readYaml(file: configurationFile)
   	return valuesYaml;
      }
     def execute() {
