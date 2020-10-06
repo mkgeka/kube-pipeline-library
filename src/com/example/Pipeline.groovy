@@ -19,6 +19,6 @@ class Pipeline {
 		    //script.stage("database") { script.step(valuesYaml.database) }
 		    //script.stage("test") { script.step(valuesYaml.test) }
 		    //script.stage("build") { script.step($class: valuesYaml.build) }
-	    }
+	   // }
     }
 }
