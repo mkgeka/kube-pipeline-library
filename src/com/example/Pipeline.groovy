@@ -16,7 +16,7 @@ class Pipeline {
 		    //script.stage("notifications") { script.step([$class: valuesYaml.notifications]) }
 		    //script.stage("database") { script.step(valuesYaml.database) }
 		    //script.stage("test") { script.step(valuesYaml.test) }
-		    script.stage("build") { script.step([$class: valuesYaml.build]) }
+		    script.stage("build") { script.step() { [$class: valuesYaml.build] } }
 	    }
     }
 }
