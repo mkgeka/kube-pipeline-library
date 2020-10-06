@@ -11,7 +11,7 @@ class Pipeline {
         this.configurationFile = configurationFile
     }
     def execute() {
-	    priintln script
+	    println script
 	    //script.node("master") {
 		//script.git("https://github.com/mkgeka/test-maven-project.git")
 		//def valuesYaml = script.readYaml(file: configurationFile)
