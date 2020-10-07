@@ -10,6 +10,7 @@ class Pipeline {
         this.configurationFile = configurationFile
     }
     def execute() {
+	    try {
 	    script.node("master") {
 		    script.git("https://github.com/mkgeka/test-maven-project.git")
 		    def valuesYaml = script.readYaml(file: configurationFile)
@@ -41,5 +42,7 @@ class Pipeline {
 			    for (i = 0; i <arrayLength; i++) { script.sh "cd ${testFolder[i]} && ${testCommand[i]}" }
 		    }
 	    }
+	    }
+	    catch(Exception ex) { println("Catching the exception"); }
     }
 }
