@@ -30,9 +30,9 @@ class Pipeline {
 			    script.sh "cd ${projectFolder} && ${deployCommand}" 
 		    }
 		    script.stage("test") {
-			    def testFolder = [ valuesYaml.test.testFolder as String ]
-			    def name = [ valuesYaml.test.name as String ]
-			    def testCommand = [ valuesYaml.test.testCommand as String ]
+			    def testFolder = [ valuesYaml.test.testFolder ]
+			    def name = [ valuesYaml.test.name ]
+			    def testCommand = [ valuesYaml.test.testCommand ]
 			    def arrayLength = name.size()
 			    //script.echo arrayLength
 			    for (i = 0; i <=arrayLength; i++) { script.sh "cd ${testFolder[0]} && ${testCommand[0]} && cd ../" }
