@@ -18,7 +18,6 @@ class Pipeline {
 			    def projectFolder = valuesYaml.build.projectFolder
 			    def buildCommand = valuesYaml.build.buildCommand
 			    script.sh "cd ${projectFolder} && ${buildCommand}"
-			    script.println "123 ${env.STAGE_NAME}"
 		    }
 		    script.stage("database") {
 			    def databaseFolder = valuesYaml.database.databaseFolder
@@ -41,7 +40,7 @@ class Pipeline {
             }
 		    catch(all) {
 			    def recipients = valuesYaml.notifications.email.recipients
-			    script.println "Sending email to ${recipients} ${STAGE_NAME}" 
+			    script.println "Sending email to ${recipients} ${env.STAGE_NAME}" 
 		    }
 	    }
     }
