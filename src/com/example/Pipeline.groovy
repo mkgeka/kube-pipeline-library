@@ -29,15 +29,12 @@ class Pipeline {
 			    script.sh "cd ${projectFolder} && ${deployCommand}" 
 		    }
 		    script.stage("test") {
-			    try {
 			    	def i = 0
 			    	def testFolder = valuesYaml.test.testFolder
 			    	def name = valuesYaml.test.name
 			    	def testCommand = valuesYaml.test.testCommand
 			    	def arrayLength = name.size()
 			    	assert for (i = 0; i <arrayLength; i++) { script.sh "cd ${testFolder[i]} && ${testCommand[i]}" }
-			    }
-			    catch (AssertionError e) { script.println "Error" }
 		    }
 	    }
     }
