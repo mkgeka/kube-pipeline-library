@@ -4,7 +4,6 @@ import java.util.*;
 class Pipeline {
     def script
     def configurationFile
-    def i
 	
     Pipeline(script, configurationFile) {
         this.script = script
@@ -30,9 +29,10 @@ class Pipeline {
 			    script.sh "cd ${projectFolder} && ${deployCommand}" 
 		    }
 		    script.stage("test") {
-			    def testFolder = [ valuesYaml.test.testFolder ]
+			    def i = 0
+			    def testFolder = valuesYaml.test.testFolder
 			    def name = valuesYaml.test.name
-			    def testCommand = [ valuesYaml.test.testCommand ]
+			    def testCommand = valuesYaml.test.testCommand
 			    def arrayLength = name.length
 			    //script.echo arrayLength
 			    for (i = 0; i <=arrayLength; i++) { script.sh "echo ${arrayLength}" }
