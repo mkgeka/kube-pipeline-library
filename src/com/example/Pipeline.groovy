@@ -33,9 +33,9 @@ class Pipeline {
 			    def testFolder = [ valuesYaml.test.testFolder ]
 			    def name = [ valuesYaml.test.name ]
 			    def testCommand = [ valuesYaml.test.testCommand ]
-			    for (itemFolder in testFolder) { script.echo itemFolder }
-			    for (itemName in name) { script.echo itemName }
-			    for (itemCommand in testCommand) { script.echo itemCommand }
+			    //for (itemFolder in testFolder) { script.echo itemFolder }
+			    //for (itemName in name) { script.echo itemName }
+			    //for (itemCommand in testCommand) { script.echo itemCommand }
 			    //script.sh "cd ${projectFolder} && ${deployCommand}" 
 		    }
 	    }
