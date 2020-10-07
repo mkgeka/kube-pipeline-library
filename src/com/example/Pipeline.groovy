@@ -4,7 +4,7 @@ import java.util.*;
 class Pipeline {
     def script
     def configurationFile
-    //def valuesYaml
+    def i
 	
     Pipeline(script, configurationFile) {
         this.script = script
