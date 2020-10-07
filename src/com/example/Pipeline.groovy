@@ -17,7 +17,7 @@ class Pipeline {
 		    def valuesYaml = script.readYaml(file: configurationFile)
 		    script.stage("build") {
 			    def buildCommand = valuesYaml.buildCommand
-			    script.sh ${buildCommand} 
+			    script.sh "${buildCommand}" 
 		    }
 	    }
     }
