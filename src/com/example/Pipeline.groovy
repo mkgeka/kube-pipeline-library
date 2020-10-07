@@ -39,7 +39,11 @@ class Pipeline {
 			    for (i = 0; i <arrayLength; i++) { script.sh "cd ${testFolder[i]} && ${testCommand[i]}" }
 		    }
             }
-		    catch(all) { script.println "Sending email to ${recipients}" }
+		    catch(all) {
+			    def valuesYaml = script.readYaml(file: configurationFile)
+			    def recipients = valuesYaml.notifications.email.recipients
+			    script.println "Sending email to ${recipients}" 
+		    }
 	    }
     }
 }
