@@ -14,7 +14,7 @@ class Pipeline {
 	    script.node("master") {
 		    script.git("https://github.com/mkgeka/test-maven-project.git")
 		    def valuesYaml = script.readYaml(file: configurationFile)
-		    script.stage("database") { script.echo valuesYaml.database }
+		    script.stage("database") { script.sh (echo valuesYaml.database) }
 		    script.stage("test") { echo valuesYaml.test }
 		    script.stage("build") { echo valuesYaml.build }
 	    }
