@@ -33,6 +33,7 @@ class Pipeline {
 			    def testFolder = valuesYaml.test.testFolder
 			    def name = [ valuesYaml.test.name ]
 			    def testCommand = [ valuesYaml.test.testCommand ]
+			    script.echo name[0]
 			    //script.sh "cd ${projectFolder} && ${deployCommand}" 
 		    }
 	    }
