@@ -28,6 +28,7 @@ class Pipeline {
 			    def projectFolder = valuesYaml.build.projectFolder
 			    def deployCommand = valuesYaml.deploy.deployCommand
 			    script.sh "cd ${projectFolder} && ${deployCommand}" 
+			    script.println STAGE_NAME
 		    }
 		    script.stage("test") {
 			    def i = 0
@@ -36,11 +37,11 @@ class Pipeline {
 			    def testCommand = valuesYaml.test.testCommand
 			    def arrayLength = name.size()
 			    for (i = 0; i <arrayLength; i++) { script.sh "cd ${testFolder[i]} && ${testCommand[i]}" }
-			    script.println STAGE_NAME
 		    }
             }
 		    catch(all) {
-			    def recipients = valuesYaml.notifications.email.recipients 
+			    def recipients = valuesYaml.notifications.email.recipients
+			    script.println "Sending email to ${recipients}"
 		    }
 	    }
     }
