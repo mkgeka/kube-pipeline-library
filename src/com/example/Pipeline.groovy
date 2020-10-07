@@ -17,7 +17,7 @@ class Pipeline {
 			    def projectFolder = valuesYaml.build.projectFolder
 			    def buildCommand = valuesYaml.build.buildCommand
 			    def recipients = valuesYaml.notifications.email.recipients
-			    script.assert sh "cd ${projectFolder} && ${buildCommand}" 
+			    script.sh "cd ${projectFolder} && ${buildCommand}" 
 		    }
 		    script.stage("database") {
 			    def databaseFolder = valuesYaml.database.databaseFolder
