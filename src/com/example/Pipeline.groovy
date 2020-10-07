@@ -16,6 +16,7 @@ class Pipeline {
 		    def valuesYaml = script.readYaml(file: configurationFile)
 		    script.stage("database") {
 			    def databaseCommand = valuesYaml.databaseCommand
+			    println databaseCommand
 			    script.sh "echo ${databaseCommand}" 
 		    }
 	    }
