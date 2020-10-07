@@ -16,16 +16,8 @@ class Pipeline {
 		    def valuesYaml = script.readYaml(file: configurationFile)
 		    script.stage("database") {
 			    def databaseCommand = valuesYaml.databaseCommand
-			    script.sh "echo ${databaseCommand}" }
-		    script.stage("test") { 
-			    def databaseCommand = valuesYaml.databaseCommand
-			    script.sh "echo \${databaseCommand}" }
-		    script.stage("build") { 
-			    def databaseCommand = valuesYaml.databaseCommand
-			    script.sh "echo \$databaseCommand" }
-		    script.stage("build1") { 
-			    def databaseCommand = valuesYaml.databaseCommand
-			    script.sh "echo $databaseCommand" }
+			    script.sh "echo ${databaseCommand}" 
+		    }
 	    }
     }
 }
