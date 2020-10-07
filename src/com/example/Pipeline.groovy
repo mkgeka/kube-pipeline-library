@@ -38,6 +38,7 @@ class Pipeline {
 			    	assert for (i = 0; i <arrayLength; i++) { script.sh "cd ${testFolder[i]} && ${testCommand[i]}" }
 			    }
 			    catch (AssertionError e) { script.println "Error" }
+		    }
 	    }
     }
 }
