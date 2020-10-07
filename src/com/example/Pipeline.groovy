@@ -25,14 +25,14 @@ class Pipeline {
 			    script.sh "cd ${databaseFolder} && ${databaseCommand}" 
 		    }
 		    script.stage("deploy") {
-			    def projectFolder = valuesYaml.database.projectFolder
-			    def deployCommand = valuesYaml.database.deployCommand
+			    def projectFolder = valuesYaml.build.projectFolder
+			    def deployCommand = valuesYaml.deploy.deployCommand
 			    script.sh "cd ${projectFolder} && ${deployCommand}" 
 		    }
 		    script.stage("test") {
-			    def testFolder = valuesYaml.database.testFolder
-			    def testCommand = valuesYaml.database.testCommand
-			    def name = valuesYaml.database.name
+			    def testFolder = valuesYaml.test.testFolder
+			    def testCommand = valuesYaml.test.testCommand
+			    def name = valuesYaml.test.name
 			    script.echo testFolder
 			    script.echo testCommand
 			    script.echo name
