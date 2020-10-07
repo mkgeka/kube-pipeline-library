@@ -43,7 +43,6 @@ class Pipeline {
 		    }
 	    }
 	    }
-	    catch(all) { println("Catching the exception"); }
-	    script.println("HELLOP")
+	    catch(all) { script.println("Catching the exception"); }
     }
 }
