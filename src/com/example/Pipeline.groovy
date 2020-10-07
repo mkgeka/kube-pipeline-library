@@ -28,13 +28,13 @@ class Pipeline {
 			    def deployCommand = valuesYaml.deploy.deployCommand
 			    script.sh "cd ${projectFolder} && ${deployCommand}" 
 		    }
-		    script.stage("test") {
+		    assert script.stage("test") {
 			    	def i = 0
 			    	def testFolder = valuesYaml.test.testFolder
 			    	def name = valuesYaml.test.name
 			    	def testCommand = valuesYaml.test.testCommand
 			    	def arrayLength = name.size()
-			    	assert for (i = 0; i <arrayLength; i++) { script.sh "cd ${testFolder[i]} && ${testCommand[i]}" }
+			    	for (i = 0; i <arrayLength; i++) { script.sh "cd ${testFolder[i]} && ${testCommand[i]}" }
 		    }
 	    }
     }
