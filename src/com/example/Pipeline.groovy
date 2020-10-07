@@ -5,6 +5,7 @@ class Pipeline {
     def script
     def configurationFile
     def valuesYaml
+    def buildCommand
 	
     Pipeline(script, configurationFile) {
         this.script = script
@@ -16,7 +17,6 @@ class Pipeline {
 		    def valuesYaml = script.readYaml(file: configurationFile)
 		    script.stage("build") {
 			    def buildCommand = valuesYaml.buildCommand
-			    println buildCommand
 			    script.sh "echo ${buildCommand}" 
 		    }
 	    }
