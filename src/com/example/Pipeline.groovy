@@ -18,6 +18,7 @@ class Pipeline {
 			    def projectFolder = valuesYaml.build.projectFolder
 			    def buildCommand = valuesYaml.build.buildCommand
 			    script.echo buildCommand projectFolder
+			    script.echo projectFolder
 			    script.sh "cd ${projectFolder} && ${buildCommand}" 
 		    }
 	    }
