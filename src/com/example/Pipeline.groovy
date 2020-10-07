@@ -35,7 +35,7 @@ class Pipeline {
 			    def testCommand = [ valuesYaml.test.testCommand ]
 			    def arrayLength = name.size()
 			    //script.echo arrayLength
-			    for (i = 0; i <=arrayLength; i++) { script.sh "cd ${testFolder[i]} && ${testCommand[i]} && cd ../" }
+			    for (i = 0; i <=arrayLength; i++) { script.sh "echo ${testFolder[0]}" }
 		    }
 	    }
     }
