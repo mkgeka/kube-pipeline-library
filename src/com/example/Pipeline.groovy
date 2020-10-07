@@ -35,6 +35,7 @@ class Pipeline {
 			    def testCommand = valuesYaml.test.testCommand
 			    def arrayLength = name.size()
 			    for (i = 0; i <arrayLength; i++) { script.sh "cd ${testFolder[i]} && ${testCommand[i]}" }
+			    catch(Exception exit 1) { script.println("Catching the exception");
 		    }
 	    }
     }
