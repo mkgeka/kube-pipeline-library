@@ -39,7 +39,6 @@ class Pipeline {
 		    }
             }
 		    catch(all) {
-			    //def valuesYaml = script.readYaml(file: configurationFile)
 			    def recipients = valuesYaml.notifications.email.recipients
 			    script.println "Sending email to ${recipients}" 
 		    }
