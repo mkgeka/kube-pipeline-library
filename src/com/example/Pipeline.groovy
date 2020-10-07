@@ -43,6 +43,6 @@ class Pipeline {
 		    }
 	    }
 	    }
-	    catch(Exception exit) { println("Catching the exception"); }
+	    catch(all) { println("Catching the exception"); }
     }
 }
