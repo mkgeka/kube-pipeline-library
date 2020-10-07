@@ -31,7 +31,7 @@ class Pipeline {
 		    }
 		    script.stage("test") {
 			    def testFolder = [ valuesYaml.test.testFolder ]
-			    def name = [ valuesYaml.test.name as list]
+			    def name = [ valuesYaml.test.name as List]
 			    def testCommand = [ valuesYaml.test.testCommand ]
 			    def arrayLength = name.size()
 			    //script.echo arrayLength
