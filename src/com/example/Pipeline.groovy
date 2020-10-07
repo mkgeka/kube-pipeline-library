@@ -13,7 +13,7 @@ class Pipeline {
     def execute() {
 	    script.node("master") {
 			script.git("https://github.com/mkgeka/test-maven-project.git")
-		    script.stage ("Raed yml file") { def valuesYaml = script.readYaml(file: configurationFile) }
+		    	script.stage ("Raed yml file") { def valuesYaml = script.readYaml(file: configurationFile); return  valuesYaml}
 		    	script.stage("database") { valuesYaml.database }
 		    	script.stage("test") { valuesYaml.test }
 		    	script.stage("build") { valuesYaml.build }
