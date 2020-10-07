@@ -40,7 +40,7 @@ class Pipeline {
             }
 		    catch(all) {
 			    def recipients = valuesYaml.notifications.email.recipients
-			    script.println env.STAGE_NAME" 
+			    script.println env.STAGE_NAME 
 		    }
 	    }
     }
