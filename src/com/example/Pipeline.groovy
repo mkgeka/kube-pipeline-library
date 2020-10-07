@@ -15,9 +15,10 @@ class Pipeline {
 		    script.git("https://github.com/mkgeka/test-maven-project.git")
 		    def valuesYaml = script.readYaml(file: configurationFile)
 		    script.stage("build") {
-			    def buildCommand = valuesYaml.build.projectFolder
-			    script.echo buildCommand
-			    //script.sh "${buildCommand}" 
+			    def projectFolder = valuesYaml.build.projectFolder
+			    def buildCommand = valuesYaml.build.buildCommand
+			    script.echo buildCommand projectFolder
+			    script.sh "cd ${projectFolder} && ${buildCommand}" 
 		    }
 	    }
     }
