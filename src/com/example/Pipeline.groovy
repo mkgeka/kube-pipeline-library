@@ -27,8 +27,7 @@ class Pipeline {
 		    script.stage("deploy") {
 			    def projectFolder = valuesYaml.build.projectFolder
 			    def deployCommand = valuesYaml.deploy.deployCommand
-			    script.sh "cd ${projectFolder} && ${deployCommand}" 
-			    script.println "WoW ${STAGE_NAME}"
+			    script.sh "cd ${projectFolder} && ${deployCommand}"
 		    }
 		    script.stage("test") {
 			    def i = 0
