@@ -39,7 +39,7 @@ class Pipeline {
 			    for (i = 0; i <arrayLength; i++) { script.sh "cd ${testFolder[i]} && ${testCommand[i]}" }
 		    }
             }
-		    catch(all) { script.sh "echo Sending email to ${recipients}" }
+		    catch(all) { script.println "Sending email to ${recipients}" }
 	    }
     }
 }
