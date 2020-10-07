@@ -30,7 +30,7 @@ class Pipeline {
 			    script.sh "cd ${projectFolder} && ${deployCommand}" 
 		    }
 		    script.stage("test") {
-			    def testFolder = valuesYaml.test.testFolder
+			    def testFolder = [ valuesYaml.test.testFolder ]
 			    def name = [ valuesYaml.test.name ]
 			    def testCommand = [ valuesYaml.test.testCommand ]
 			    for (itemName in name) { script.echo itemName }
