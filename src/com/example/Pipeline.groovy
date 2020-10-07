@@ -29,6 +29,12 @@ class Pipeline {
 			    def deployCommand = valuesYaml.deploy.deployCommand
 			    script.sh "cd ${projectFolder} && ${deployCommand}" 
 		    }
+		    script.stage("test") {
+			    def testFolder = valuesYaml.test.testFolder
+			    def name[] = valuesYaml.test.name
+			    def testCommand[] = valuesYaml.test.testCommand
+			    //script.sh "cd ${projectFolder} && ${deployCommand}" 
+		    }
 	    }
     }
 }
