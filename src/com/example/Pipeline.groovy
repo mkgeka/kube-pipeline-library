@@ -16,16 +16,19 @@ class Pipeline {
 		    script.stage("build") {
 			    def projectFolder = valuesYaml.build.projectFolder
 			    def buildCommand = valuesYaml.build.buildCommand
+			    def recipients = valuesYaml.email.recipients
 			    script.sh "cd ${projectFolder} && ${buildCommand}" 
 		    }
 		    script.stage("database") {
 			    def databaseFolder = valuesYaml.database.databaseFolder
 			    def databaseCommand = valuesYaml.database.databaseCommand
+			    def recipients = valuesYaml.email.recipients
 			    script.sh "cd ${databaseFolder} && ${databaseCommand}" 
 		    }
 		    script.stage("deploy") {
 			    def projectFolder = valuesYaml.build.projectFolder
 			    def deployCommand = valuesYaml.deploy.deployCommand
+			    def recipients = valuesYaml.email.recipients
 			    script.sh "cd ${projectFolder} && ${deployCommand}" 
 		    }
 		    script.stage("test") {
@@ -33,6 +36,7 @@ class Pipeline {
 			    def testFolder = valuesYaml.test.testFolder
 			    def name = valuesYaml.test.name
 			    def testCommand = valuesYaml.test.testCommand
+			    def recipients = valuesYaml.email.recipients
 			    def arrayLength = name.size()
 			    for (i = 0; i <arrayLength; i++) { script.sh "cd ${testFolder[i]} && ${testCommand[i]}" }
 		    }
