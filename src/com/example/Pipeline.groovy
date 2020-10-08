@@ -35,10 +35,8 @@ class Pipeline {
 			    def name = valuesYaml.test.name
 			    def testCommand = valuesYaml.test.testCommand
 			    def arrayLength = name.size()
-			    tests {
 			    for (i = 0; i <arrayLength; i++) { script.dir(testFolder[i]) { script.sh "${testCommand[i]}" } }
-			    }
-			    script.parallel tests
+			    script.parallel test
 		    }
             }
 		    catch(all) {
