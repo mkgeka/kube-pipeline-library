@@ -43,8 +43,8 @@ class Pipeline {
 				    def arrayLength = name.size()
 				    def builders = [:]
 				    for (i = 0; i <arrayLength; i++) { 
-					WorkFolder = testFolder[i]
-					WorkCommand = testCommand[i]
+					def WorkFolder = testFolder[i]
+					def WorkCommand = testCommand[i]
 					builders[i] = { script.dir(WorkFolder) { script.sh "${WorkCommand}" } } }
 				    script.parallel builders
 			    }
