@@ -40,8 +40,10 @@ class Pipeline {
 				    def name = valuesYaml.test.name
 				    def testCommand = valuesYaml.test.testCommand
 				    def arrayLength = name.size()
-				    for (def i = 0; i <arrayLength; i++) { script.dir(testFolder[i]) { script.sh "${testCommand[i]}" } } 
+				    def builders = [:]
+				    for (def i = 0; i <arrayLength; i++) { def label = i builders[label] = { script.dir(testFolder[i]) { script.sh "${testCommand[i]}" } } }
 			    }
+			    parallel builders
 		    }
 		    catch(all) {
 			    def recipients = valuesYaml.notifications.email.recipients
