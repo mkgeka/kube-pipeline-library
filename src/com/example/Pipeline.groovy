@@ -46,7 +46,7 @@ class Pipeline {
 					builders[label] = { script.dir(testFolder[i]) { script.sh "${testCommand[i]}" } } 
 					}
 			    }
-			    parallel builders
+			    script.parallel builders
 		    }
 		    catch(all) {
 			    def recipients = valuesYaml.notifications.email.recipients
