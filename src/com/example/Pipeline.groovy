@@ -41,7 +41,7 @@ class Pipeline {
 				    def name = valuesYaml.test.name
 				    def testCommand = valuesYaml.test.testCommand
 				    def arrayLength = name.size()
-				    for (def i = 0; i <arrayLength; i++) { builders[i] = { script.dir(testFolder[i]) { script.sh "${testCommand[i]}" } } }
+				    for (def i = 0; i <arrayLength; i++) { builders[i] = { script.node(server) { script.dir(testFolder[i]) { script.sh "${testCommand[i]}" } } } }
 				    script.parallel builders
 			    }
 		    }
