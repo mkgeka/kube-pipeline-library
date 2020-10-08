@@ -34,15 +34,13 @@ class Pipeline {
 				    def deployCommand = valuesYaml.deploy.deployCommand
 				    script.dir(projectFolder) { script.sh "${deployCommand}" }
 			    }
-			    script.parallel  {
 			    script.stage(stage[3]) {
 				    script.println "Current running ${stage[3]}"
 				    def testFolder = valuesYaml.test.testFolder
 				    def name = valuesYaml.test.name
 				    def testCommand = valuesYaml.test.testCommand
 				    def arrayLength = name.size()
-				    for (def i = 0; i <arrayLength; i++) { script.dir(testFolder[i]) { script.sh "${testCommand[i]}" } }
-			    }
+				    for (def i = 0; i <arrayLength; i++) { parallel(i) script.dir(testFolder[i]) { script.sh "${testCommand[i]}" } }
 			    }
 		    }
 		    catch(all) {
