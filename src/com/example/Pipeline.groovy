@@ -16,21 +16,25 @@ class Pipeline {
 		    def stage = [ 'build', 'database', 'deploy', 'test']
 		    try {
 			    script.stage(stage[0]) {
+				    script.println "Current running ${stage[0]}"
 				    def projectFolder = valuesYaml.build.projectFolder
 				    def buildCommand = valuesYaml.build.buildCommand
 				    script.dir(projectFolder) { script.sh "${buildCommand}" }
 			    }
 			    script.stage(stage[1]) {
+				    script.println "Current running ${stage[1]}"
 				    def databaseFolder = valuesYaml.database.databaseFolder
 				    def databaseCommand = valuesYaml.database.databaseCommand
 				    script.dir(databaseFolder) { script.sh "${databaseCommand}" } 
 			    }
 			    script.stage(stage[2]) {
+				    script.println "Current running ${stage[2]}"
 				    def projectFolder = valuesYaml.build.projectFolder
 				    def deployCommand = valuesYaml.deploy.deployCommand
 				    script.dir(projectFolder) { script.sh "${deployCommand}" }
 			    }
 			    script.stage(stage[3]) {
+				    script.println "Current running ${stage[3]}"
 				    def testFolder = valuesYaml.test.testFolder
 				    def name = valuesYaml.test.name
 				    def testCommand = valuesYaml.test.testCommand
@@ -40,7 +44,7 @@ class Pipeline {
 		    }
 		    catch(all) {
 			    	def recipients = valuesYaml.notifications.email.recipients
-			    	script.println "The stage ${x} has been failed so sending email to ${recipients}"
+			    	script.println "The stage has been failed so sending email to ${recipients}"
 		    }
 	    }
     }
