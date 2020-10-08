@@ -31,6 +31,7 @@ class Pipeline {
 				    script.dir(projectFolder) { script.sh "${deployCommand}" }
 			    }
 			    script.stage(stage[3]) {
+				    stage1 = stage[3]
 				    def testFolder = valuesYaml.test.testFolder
 				    def name = valuesYaml.test.name
 				    def testCommand = valuesYaml.test.testCommand
@@ -40,7 +41,7 @@ class Pipeline {
 		    }
 		    catch(all) {
 			    	def recipients = valuesYaml.notifications.email.recipients
-			    	script.println "The stage ${stage[3]} has been failed so sending email to ${recipients}"
+			    	script.println "The stage ${stage1} has been failed so sending email to ${recipients}"
 		    }
 	    }
     }
