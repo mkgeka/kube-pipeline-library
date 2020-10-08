@@ -14,13 +14,11 @@ class Pipeline {
 		    script.git("https://github.com/mkgeka/test-maven-project.git")
 		    def valuesYaml = script.readYaml(file: configurationFile)
 		    try {
-			    def STAGE_NAME = "build"
 		    script.stage("build") {
 			    def projectFolder = valuesYaml.build.projectFolder
 			    def buildCommand = valuesYaml.build.buildCommand
 			    script.dir(projectFolder) { script.sh "${buildCommand}" }
 		    }
-			    def STAGE_NAME = "database"
 		    script.stage("database") {
 			    def databaseFolder = valuesYaml.database.databaseFolder
 			    def databaseCommand = valuesYaml.database.databaseCommand
@@ -31,7 +29,6 @@ class Pipeline {
 			    def deployCommand = valuesYaml.deploy.deployCommand
 			    script.dir(projectFolder) { script.sh "${deployCommand}" }
 		    }
-			    def STAGE_NAME = "test"
 		    script.stage("test") {
 			    def i = 0
 			    def testFolder = valuesYaml.test.testFolder
@@ -44,7 +41,7 @@ class Pipeline {
             }
 		    catch(all) {
 			    def recipients = valuesYaml.notifications.email.recipients
-			    script.println "the ${STAGE_NAME} Sending email to ${recipients}"
+			    script.println "The ${STAGE_NAME} has been failed so sending email to ${recipients}"
 		    }
 	    }
     }
