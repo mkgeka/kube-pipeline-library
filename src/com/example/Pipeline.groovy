@@ -10,7 +10,8 @@ class Pipeline {
         this.configurationFile = configurationFile
     }
     def execute() {
-	    script.node("master") {
+	    def label = "master"
+	    script.node(label) {
 		    script.git("https://github.com/mkgeka/test-maven-project.git")
 		    def valuesYaml = script.readYaml(file: configurationFile)
 		    def stage = [ 'build', 'database', 'deploy', 'test']
@@ -41,9 +42,8 @@ class Pipeline {
 				    def testCommand = valuesYaml.test.testCommand
 				    def arrayLength = name.size()
 				    def builders = [:]
-				    for (def i = 0; i <arrayLength; i++) {
-						    def label = master 
-						    builders[label] = { node(label) { script.dir(testFolder[i]) { script.sh "${testCommand[i]}" } } }
+				    for (def i = 0; i <arrayLength; i++) { 
+						    builders[label] = { script.node(label) { script.dir(testFolder[i]) { script.sh "${testCommand[i]}" } } }
 				    }
 				    script.parallel builders
 			    }
