@@ -44,7 +44,7 @@ class Pipeline {
 		    }
 		    catch(all) {
 			    def recipients = valuesYaml.notifications.email.recipients
-			    script.sh "echo ${env.BUILD_DISPLAY_NAME}"
+			    script.sh "echo 123"
 		    }
 	    }
     }
