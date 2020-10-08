@@ -45,7 +45,7 @@ class Pipeline {
 				    for (def i = 0; i <arrayLength; i++) { 
 						    builders[label] = { script.node(label) { script.dir(testFolder[i]) { script.sh "${testCommand[i]}" } } }
 				    }
-				    script.parallel builders
+				    parallel builders
 			    }
 		    }
 		    catch(ex) {
