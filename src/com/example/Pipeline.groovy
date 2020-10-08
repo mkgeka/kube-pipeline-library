@@ -34,7 +34,7 @@ class Pipeline {
 				    def deployCommand = valuesYaml.deploy.deployCommand
 				    script.dir(projectFolder) { script.sh "${deployCommand}" }
 			    }
-			    parallel  {
+			    script.parallel  {
 			    script.stage(stage[3]) {
 				    script.println "Current running ${stage[3]}"
 				    def testFolder = valuesYaml.test.testFolder
