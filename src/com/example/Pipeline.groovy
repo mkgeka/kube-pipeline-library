@@ -21,6 +21,7 @@ class Pipeline {
 				    def projectFolder = valuesYaml.build.projectFolder
 				    def buildCommand = valuesYaml.build.buildCommand
 				    script.dir(projectFolder) { script.sh "${buildCommand}" }
+				    return failed_stage
 			    }
 			    script.stage(stage[1]) {
 				    script.println "Current running ${stage[1]}"
