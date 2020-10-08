@@ -47,6 +47,7 @@ class Pipeline {
 				    }
 				    script.parallel builders
 			    }
+		    }
 		    catch(all) {
 			    def recipients = valuesYaml.notifications.email.recipients
 			    script.sh 'printenv'
