@@ -35,13 +35,12 @@ class Pipeline {
 			    def name = valuesYaml.test.name
 			    def testCommand = valuesYaml.test.testCommand
 			    def arrayLength = name.size()
-			    for (i = 0; i <arrayLength; i++) { ptask["${i}"] = { script.dir(testFolder[i]) { script.sh "${testCommand[i]}" } } }
-			    parallel ptask
+			    for (i = 0; i <arrayLength; i++) { script.dir(testFolder[i]) { script.sh "${testCommand[i]}" } }
 		    }
             }
 		    catch(all) {
 			    def recipients = valuesYaml.notifications.email.recipients
-			    script.println "The" STAGE_NAME "has been failed so sending email to ${recipients}"
+			    script.println "The stage has been failed so sending email to ${recipients}"
 		    }
 	    }
     }
