@@ -22,12 +22,12 @@ class Pipeline {
 		    script.stage("database") {
 			    def databaseFolder = valuesYaml.database.databaseFolder
 			    def databaseCommand = valuesYaml.database.databaseCommand
-			    script.sh "cd ${databaseFolder} && ${databaseCommand}" 
+			    script.dir(databaseFolder) { script.sh "${databaseCommand}" } 
 		    }
 		    script.stage("deploy") {
 			    def projectFolder = valuesYaml.build.projectFolder
 			    def deployCommand = valuesYaml.deploy.deployCommand
-			    script.sh "cd ${projectFolder} && ${deployCommand}"
+			    script.dir(projectFolder) { script.sh "${deployCommand}" }
 		    }
 		    script.stage("test") {
 			    def i = 0
@@ -35,7 +35,7 @@ class Pipeline {
 			    def name = valuesYaml.test.name
 			    def testCommand = valuesYaml.test.testCommand
 			    def arrayLength = name.size()
-			    for (i = 0; i <arrayLength; i++) { script.sh "cd ${testFolder[i]} && ${testCommand[i]}" }
+			    for (i = 0; i <arrayLength; i++) { script.dir(testFolder[i]) { script.sh "${testCommand[i]}" } }
 		    }
             }
 		    catch(all) {
