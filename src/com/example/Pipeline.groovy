@@ -45,7 +45,7 @@ class Pipeline {
 		    }
 		    catch(all) {
 			    	def recipients = valuesYaml.notifications.email.recipients
-			    script.println "The stage ${failed_stage} has been failed so sending email to ${recipients}"
+			    script.println failed_stage 
 		    }
 	    }
     }
