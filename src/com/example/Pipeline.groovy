@@ -15,6 +15,7 @@ class Pipeline {
 		    def valuesYaml = script.readYaml(file: configurationFile)
 		    def stage = [ 'build', 'database', 'deploy', 'test']
 		    try {
+			    x = "WoW"
 			    script.stage(stage[0]) {
 				    def projectFolder = valuesYaml.build.projectFolder
 				    def buildCommand = valuesYaml.build.buildCommand
