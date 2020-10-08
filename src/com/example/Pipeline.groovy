@@ -13,6 +13,7 @@ class Pipeline {
 	    script.node("master") {
 		    script.git("https://github.com/mkgeka/test-maven-project.git")
 		    def valuesYaml = script.readYaml(file: configurationFile)
+		    def stage = "BUILD"
 		    try {
 		    script.stage("build") {
 			    def projectFolder = valuesYaml.build.projectFolder
@@ -39,7 +40,7 @@ class Pipeline {
             }
 		    catch(all) {
 			    def recipients = valuesYaml.notifications.email.recipients
-			    script.println "The stage has been failed so sending email to ${recipients}"
+			    script.println "The stage ${stage} has been failed so sending email to ${recipients}"
 		    }
 	    }
     }
