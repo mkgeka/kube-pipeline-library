@@ -17,7 +17,7 @@ class Pipeline {
 		    script.stage("build") {
 			    def projectFolder = valuesYaml.build.projectFolder
 			    def buildCommand = valuesYaml.build.buildCommand
-			    dir(projectFolder) { script.sh "${buildCommand}" }
+			    script.dir(projectFolder) { script.sh "${buildCommand}" }
 		    }
 		    script.stage("database") {
 			    def databaseFolder = valuesYaml.database.databaseFolder
