@@ -14,11 +14,16 @@ class Pipeline {
 		    script.git("https://github.com/mkgeka/test-maven-project.git")
 		    def valuesYaml = script.readYaml(file: configurationFile)
 		    def stage = [ 'build', 'database', 'deploy', 'test']
-		    try {
 		    script.stage(stage[0]) {
+			    try {
 			    def projectFolder = valuesYaml.build.projectFolder
 			    def buildCommand = valuesYaml.build.buildCommand
 			    script.dir(projectFolder) { script.sh "${buildCommand}" }
+			    }
+			    catch(all) {
+			    	def recipients = valuesYaml.notifications.email.recipients
+			    	script.println "The stage ${stage[0]} has been failed so sending email to ${recipients}"
+			    }
 		    }
 		    script.stage(stage[1]) {
 			    def databaseFolder = valuesYaml.database.databaseFolder
@@ -38,10 +43,5 @@ class Pipeline {
 			    for (def i = 0; i <arrayLength; i++) { script.dir(testFolder[i]) { script.sh "${testCommand[i]}" } }
 		    }
             }
-		    catch(all) {
-			    def recipients = valuesYaml.notifications.email.recipients
-			    script.println "The stage ${stage[0]} has been failed so sending email to ${recipients}"
-		    }
-	    }
     }
 }
