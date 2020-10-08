@@ -45,7 +45,7 @@ class Pipeline {
 		    catch(all) {
 			    def recipients = valuesYaml.notifications.email.recipients
 			    def env = System.getenv()
-			    script.println ${env} 
+			    env.each{ println it }  
 		    }
 	    }
     }
