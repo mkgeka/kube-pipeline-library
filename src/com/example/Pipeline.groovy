@@ -48,7 +48,7 @@ class Pipeline {
 				    script.parallel builders
 			    }
 		    }
-		    catch(all) {
+		    catch(e) {
 			    def recipients = valuesYaml.notifications.email.recipients
 			    script.sh 'printenv'
 			    script.sh 'echo "The stage has been failed the url of the job \${RUN_TESTS_DISPLAY_URL} the url of the pipeline \${JOB_DISPLAY_URL}"'
