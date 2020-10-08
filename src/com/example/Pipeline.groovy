@@ -42,7 +42,6 @@ class Pipeline {
 				    def arrayLength = name.size()
 				    for (def i = 0; i <arrayLength; i++) { script.dir(testFolder[i]) { script.sh "${testCommand[i]}" } } 
 			    }
-			    script.parallel stage[3]
 		    }
 		    catch(all) {
 			    def recipients = valuesYaml.notifications.email.recipients
