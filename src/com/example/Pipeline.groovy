@@ -16,24 +16,24 @@ class Pipeline {
 		    def stage = [ 'build', 'database', 'deploy', 'test']
 		    try {
 		    script.stage(stage[0]) {
-			    def projectFolder = valuesYaml.build.projectFolder
-			    def buildCommand = valuesYaml.build.buildCommand
+			    def projectFolder = valuesYaml.stage[0].projectFolder
+			    def buildCommand = valuesYaml.stage[0].buildCommand
 			    script.dir(projectFolder) { script.sh "${buildCommand}" }
 		    }
 		    script.stage(stage[1]) {
-			    def databaseFolder = valuesYaml.database.databaseFolder
-			    def databaseCommand = valuesYaml.database.databaseCommand
+			    def databaseFolder = valuesYaml.stage[1].databaseFolder
+			    def databaseCommand = valuesYaml.stage[1].databaseCommand
 			    script.dir(databaseFolder) { script.sh "${databaseCommand}" } 
 		    }
 		    script.stage(stage[2]) {
-			    def projectFolder = valuesYaml.build.projectFolder
-			    def deployCommand = valuesYaml.deploy.deployCommand
+			    def projectFolder = valuesYaml.stage[0].projectFolder
+			    def deployCommand = valuesYaml.stage[2].deployCommand
 			    script.dir(projectFolder) { script.sh "${deployCommand}" }
 		    }
 		    script.stage(stage[3]) {
-			    def testFolder = valuesYaml.test.testFolder
-			    def name = valuesYaml.test.name
-			    def testCommand = valuesYaml.test.testCommand
+			    def testFolder = valuesYaml.stage[3].testFolder
+			    def name = valuesYaml.stage[3].name
+			    def testCommand = valuesYaml.stage[3].testCommand
 			    def arrayLength = name.size()
 			    for (def i = 0; i <arrayLength; i++) { script.dir(testFolder[i]) { script.sh "${testCommand[i]}" } }
 		    }
