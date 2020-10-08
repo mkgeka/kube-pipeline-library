@@ -13,10 +13,10 @@ class Pipeline {
 	    script.node("master") {
 		    script.git("https://github.com/mkgeka/test-maven-project.git")
 		    def valuesYaml = script.readYaml(file: configurationFile)
-		    def stage = [ 'build', 'database', 'deploy', 'test']
+		    def stage = [ 'build', 'database', 'deploy', 'test'] as String
 		    try {
 		    script.stage(stage[0]) {
-			    def projectFolder = valuesYaml.build.projectFolder
+			    def projectFolder = valuesYaml.stage[0].projectFolder
 			    def buildCommand = valuesYaml.build.buildCommand
 			    script.dir(projectFolder) { script.sh "${buildCommand}" }
 		    }
