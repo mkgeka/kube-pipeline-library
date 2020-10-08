@@ -30,12 +30,12 @@ class Pipeline {
 			    script.dir(projectFolder) { script.sh "${deployCommand}" }
 		    }
 		    script.stage("test") {
-			    def i = 0
+			    //def i = 0
 			    def testFolder = valuesYaml.test.testFolder
 			    def name = valuesYaml.test.name
 			    def testCommand = valuesYaml.test.testCommand
 			    def arrayLength = name.size()
-			    for (i = 0; i <arrayLength; i++) { script.dir(testFolder[i]) { script.sh "${testCommand[i]}" } }
+			    for (def i = 0; i <arrayLength; i++) { script.dir(testFolder[i]) { script.sh "${testCommand[i]}" } }
 		    }
             }
 		    catch(all) {
