@@ -60,6 +60,6 @@ class Pipeline {
 			    	script.println "The stage ${stage[3]} has been failed so sending email to ${recipients}"
 			    }
 		    }
-            }
+	    }
     }
 }
