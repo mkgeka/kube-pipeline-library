@@ -16,6 +16,7 @@ class Pipeline {
 		    def stage = [ 'build', 'database', 'deploy', 'test']
 		    try {
 			    script.stage(stage[0]) {
+				    env.failed_stage = stage[0]
 				    script.println "Current running ${stage[0]}"
 				    def projectFolder = valuesYaml.build.projectFolder
 				    def buildCommand = valuesYaml.build.buildCommand
@@ -44,8 +45,7 @@ class Pipeline {
 		    }
 		    catch(all) {
 			    def recipients = valuesYaml.notifications.email.recipients
-			    def env = System.getenv()
-			    env.each{ script.println it }  
+			    script.println env.failed_stage 
 		    }
 	    }
     }
