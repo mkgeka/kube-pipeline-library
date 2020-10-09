@@ -53,7 +53,8 @@ class Pipeline {
 		    }
 		    catch(ex) {
 			    def recipients = valuesYaml.notifications.email.recipients
-			    script.sh 'echo "The stage \${env.STAGE_NAME} has been failed the url of the job \${RUN_TESTS_DISPLAY_URL} the url of the pipeline \${JOB_DISPLAY_URL}"'
+			    script.sh 'printenv'
+			    //script.sh 'echo "The stage \${env.STAGE_NAME} has been failed the url of the job \${RUN_TESTS_DISPLAY_URL} the url of the pipeline \${JOB_DISPLAY_URL}"'
 		    }
 	    }
     }
