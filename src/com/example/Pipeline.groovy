@@ -17,7 +17,7 @@ class Pipeline {
 		    def stage = [ 'build', 'database', 'deploy', 'test']
 		    try {
 			    script.stage(stage[0]) {
-				    script.environment  { def STAGE_NAME = "123" }
+				    script. withEnv(["STAGE_NAME=123"])
 				    script.println "Current running ${stage[0]}"
 				    def projectFolder = valuesYaml.build.projectFolder
 				    def buildCommand = valuesYaml.build.buildCommand
