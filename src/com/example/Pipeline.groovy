@@ -30,12 +30,14 @@ class Pipeline {
 				    script.dir(databaseFolder) { script.sh "${databaseCommand}" } 
 			    }
 			    script.stage(stage[2]) {
+				    script.environment  { STAGE_NAME = "123" }
 				    script.println "Current running ${stage[2]}"
 				    def projectFolder = valuesYaml.build.projectFolder
 				    def deployCommand = valuesYaml.deploy.deployCommand
 				    script.dir(projectFolder) { script.sh "${deployCommand}" }
 			    }
 			    script.stage(stage[3]) {
+				    script.environment  { STAGE_NAME = "123" }
 				    script.println "Current running ${stage[3]}"
 				    def testFolder = valuesYaml.test.testFolder
 				    def name = valuesYaml.test.name
@@ -51,7 +53,7 @@ class Pipeline {
 		    }
 		    catch(ex) {
 			    def recipients = valuesYaml.notifications.email.recipients
-			    script.sh 'echo "The stage has been failed the url of the job \${RUN_TESTS_DISPLAY_URL} the url of the pipeline \${JOB_DISPLAY_URL}"'
+			    script.sh 'echo "The stage \${STAGE_NAME} has been failed the url of the job \${RUN_TESTS_DISPLAY_URL} the url of the pipeline \${JOB_DISPLAY_URL}"'
 		    }
 	    }
     }
