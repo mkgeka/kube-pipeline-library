@@ -24,21 +24,21 @@ class Pipeline {
 				    script.dir(projectFolder) { script.sh "${buildCommand}" }
 			    }
 			    script.stage(stage[1]) {
-				    script.environment  { STAGE_NAME = "123" }
+				    script.env.STAGE_NAME = stage[1]
 				    script.println "Current running ${stage[1]}"
 				    def databaseFolder = valuesYaml.database.databaseFolder
 				    def databaseCommand = valuesYaml.database.databaseCommand
 				    script.dir(databaseFolder) { script.sh "${databaseCommand}" } 
 			    }
 			    script.stage(stage[2]) {
-				    script.environment  { STAGE_NAME = "123" }
+				    script.env.STAGE_NAME = stage[2]
 				    script.println "Current running ${stage[2]}"
 				    def projectFolder = valuesYaml.build.projectFolder
 				    def deployCommand = valuesYaml.deploy.deployCommand
 				    script.dir(projectFolder) { script.sh "${deployCommand}" }
 			    }
 			    script.stage(stage[3]) {
-				    script.environment  { STAGE_NAME = "123" }
+				    script.env.STAGE_NAME = stage[3]
 				    script.println "Current running ${stage[3]}"
 				    def testFolder = valuesYaml.test.testFolder
 				    def name = valuesYaml.test.name
@@ -54,8 +54,7 @@ class Pipeline {
 		    }
 		    catch(ex) {
 			    def recipients = valuesYaml.notifications.email.recipients
-			    script.sh 'printenv'
-			    //script.sh 'echo "The stage \${env.STAGE_NAME} has been failed the url of the job \${RUN_TESTS_DISPLAY_URL} the url of the pipeline \${JOB_DISPLAY_URL}"'
+			    script.sh 'echo "The stage \${STAGE_NAME} has been failed the url of the job \${RUN_TESTS_DISPLAY_URL} the url of the pipeline \${JOB_DISPLAY_URL}"'
 		    }
 	    }
     }
