@@ -14,7 +14,7 @@ class Pipeline {
 	    script.node(server) {
 		    script.git("https://github.com/mkgeka/kube-maven-project.git")
 		    def valuesYaml = script.readYaml(file: configurationFile)
-		    def stage = [ 'source', 'preparing' 'build', 'test', 'deploy']
+		    def stage = [ 'source', 'preparing', 'build', 'test', 'deploy']
 		    try {
 			    script.stage(stage[0]) {
 				    script.env.STAGE_NAME = stage[0]
