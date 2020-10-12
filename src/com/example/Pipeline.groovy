@@ -26,7 +26,9 @@ class Pipeline {
 				    script.env.STAGE_NAME = stage[1]
 				    script.println "Current running ${stage[1]}"
 				    def sourceCommand = "ls -la"
-				    script.sh "${sourceCommand}"
+				    script.sh "ansible-galaxy install geerlingguy.jenkins"
+				    script.sh "ansible-galaxy install geerlingguy.docker"
+				    script.sh "ansible-galaxy collection install community.general"
 			    }
 			    script.stage(stage[2]) {
 				    script.env.STAGE_NAME = stage[2]
