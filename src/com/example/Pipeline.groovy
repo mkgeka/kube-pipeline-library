@@ -12,7 +12,7 @@ class Pipeline {
     def execute() {
 	    def server = "master"
 	    script.node(server) {
-		    script.git("https://github.com/mkgeka/test-maven-project.git")
+		    script.git("https://github.com/mkgeka/kube-maven-project.git")
 		    def valuesYaml = script.readYaml(file: configurationFile)
 		    def stage = [ 'build', 'database', 'deploy']
 		    try {
