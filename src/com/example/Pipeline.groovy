@@ -25,13 +25,13 @@ class Pipeline {
 			    script.stage(stage[1]) {
 				    script.env.STAGE_NAME = stage[1]
 				    script.println "Current running ${stage[1]}"
-				    def testCommand = "ansible-playbook playbook.yml --check"
+				    def testCommand = valuesYaml.test.testCommand
 				    script.sh "${testCommand}"
 			    }
 			    script.stage(stage[2]) {
 				    script.env.STAGE_NAME = stage[2]
 				    script.println "Current running ${stage[2]}"
-				    def deployCommand = "ansible-playbook playbook.yml"
+				    def deployCommand = valuesYaml.deploy.deployCommand
 				    script.sh "${deployCommand}"
 			    }
 		    }
