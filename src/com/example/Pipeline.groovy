@@ -12,7 +12,6 @@ class Pipeline {
     def execute() {
 	    def server = "master"
 	    script.node(server) {
-		    //script.git("https://github.com/mkgeka/kube-maven-project.git")
 		    def valuesYaml = script.readYaml(file: configurationFile)
 		    def stage = [ 'source', 'preparing', 'build', 'test image', 'test playbooks', 'deploy']
 		    try {
