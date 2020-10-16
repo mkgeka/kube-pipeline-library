@@ -11,18 +11,21 @@ class Pipeline {
     }
     def execute() {
 	    def server = "master"
+	    def branch = "master"
 	    script.node(server) {
 		    def valuesYaml = script.readYaml(file: configurationFile)
 		    def stage = [ 'source', 'preparing', 'build', 'test image', 'test playbooks', 'deploy']
 		    try {
 			    script.stage(stage[0]) {
 				    script.env.STAGE_NAME = stage[0]
+				    script.env.BRANCH_NAME = branch
 				    script.println "Current running ${stage[0]}"
 				    def sourceCommand = "ls -la"
 				    script.sh "${sourceCommand}"
 			    }
 			    script.stage(stage[1]) {
 				    script.env.STAGE_NAME = stage[1]
+				    script.env.BRANCH_NAME = branch
 				    script.println "Current running ${stage[1]}"
 				    script.sh "ansible-galaxy install geerlingguy.jenkins"
 				    script.sh "ansible-galaxy install geerlingguy.docker"
@@ -30,12 +33,14 @@ class Pipeline {
 			    }
 			    script.stage(stage[2]) {
 				    script.env.STAGE_NAME = stage[2]
+				    script.env.BRANCH_NAME = branch
 				    script.println "Current running ${stage[2]}"
 				    def buildCommand = valuesYaml.build.buildCommand
 				    script.sh "${buildCommand}"
 			    }
 			    script.stage(stage[3]) {
 				    script.env.STAGE_NAME = stage[3]
+				    script.env.BRANCH_NAME = branch
 				    script.println "Current running ${stage[3]}"
 				    def testImage = valuesYaml.test.testImage
 				    script.sh "${testImage}"
@@ -43,12 +48,14 @@ class Pipeline {
 			    
 			    script.stage(stage[4]) {
 				    script.env.STAGE_NAME = stage[4]
+				    script.env.BRANCH_NAME = branch
 				    script.println "Current running ${stage[4]}"
 				    def testCommand = valuesYaml.test.testCommand
 				    script.sh "${testCommand}"
 			    }
 			    script.stage(stage[5]) {
 				    script.env.STAGE_NAME = stage[5]
+				    script.env.BRANCH_NAME = branch
 				    script.println "Current running ${stage[5]}"
 				    def deployCommand = valuesYaml.deploy.deployCommand
 				    script.sh "${deployCommand}"
@@ -56,7 +63,7 @@ class Pipeline {
 		    }
 		    catch(ex) {
 			    def recipients = valuesYaml.notifications.email.recipients
-			    script.sh 'echo "The stage --- \${STAGE_NAME} --- has been failed the url of the job \${RUN_TESTS_DISPLAY_URL} the url of the pipeline \${JOB_DISPLAY_URL}"'
+			    script.sh 'echo "The stage --- \${STAGE_NAME} --- has been failed on branch -- \${BRANCH_NAME} the url of the job \${RUN_TESTS_DISPLAY_URL} the url of the pipeline \${JOB_DISPLAY_URL}"'
 		    }
 	    }
     }
