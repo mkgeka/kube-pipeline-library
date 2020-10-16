@@ -48,9 +48,9 @@ class Pipeline {
 				    def testCommand = valuesYaml.test.testCommand
 				    script.sh "${testCommand}"
 			    }
-			    script.stage(stage[4]) {
-				    script.env.STAGE_NAME = stage[4]
-				    script.println "Current running ${stage[4]}"
+			    script.stage(stage[5]) {
+				    script.env.STAGE_NAME = stage[5]
+				    script.println "Current running ${stage[5]}"
 				    def deployCommand = valuesYaml.deploy.deployCommand
 				    script.sh "${deployCommand}"
 			    }
