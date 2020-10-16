@@ -12,7 +12,7 @@ class Pipeline {
     def execute() {
 	    def server = "master"
 	    script.node(server) {
-		    script.checkout scm
+		    script.checkout scm()
 		    def valuesYaml = script.readYaml(file: configurationFile)
 		    def stage = [ 'source', 'preparing', 'build', 'test image', 'test playbooks', 'deploy']
 		    try {
